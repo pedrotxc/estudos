@@ -1,13 +1,13 @@
-package com.pedrotxc.rest_with_spring_boot_and_java.greeting_and_math.controllers;
+package com.pedrotxc.rest_with_spring_boot_and_java.math.controllers;
 
-import com.pedrotxc.rest_with_spring_boot_and_java.greeting_and_math.exception.UnsuportedMathOperationException;
-import com.pedrotxc.rest_with_spring_boot_and_java.greeting_and_math.math.SimpleMath;
+import com.pedrotxc.rest_with_spring_boot_and_java.exception.UnsuportedMathOperationException;
+import com.pedrotxc.rest_with_spring_boot_and_java.math.math.SimpleMath;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.pedrotxc.rest_with_spring_boot_and_java.greeting_and_math.converters.NumberConverter.convertToDouble;
-import static com.pedrotxc.rest_with_spring_boot_and_java.greeting_and_math.converters.NumberConverter.isNumeric;
+import static com.pedrotxc.rest_with_spring_boot_and_java.math.converters.NumberConverter.convertToDouble;
+import static com.pedrotxc.rest_with_spring_boot_and_java.math.converters.NumberConverter.isNumeric;
 
 @RestController
 @RequestMapping("/math")

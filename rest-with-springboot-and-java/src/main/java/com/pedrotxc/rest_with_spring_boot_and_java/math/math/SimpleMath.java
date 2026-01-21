@@ -1,4 +1,4 @@
-package com.pedrotxc.rest_with_spring_boot_and_java.greeting_and_math.math;
+package com.pedrotxc.rest_with_spring_boot_and_java.math.math;
 
 public class SimpleMath {
 

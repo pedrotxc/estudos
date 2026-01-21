@@ -1,6 +1,6 @@
-package com.pedrotxc.rest_with_spring_boot_and_java.greeting_and_math.exception.handler;
+package com.pedrotxc.rest_with_spring_boot_and_java.exception.handler;
 
-import com.pedrotxc.rest_with_spring_boot_and_java.greeting_and_math.exception.ExceptionResponse;
+import com.pedrotxc.rest_with_spring_boot_and_java.exception.ExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

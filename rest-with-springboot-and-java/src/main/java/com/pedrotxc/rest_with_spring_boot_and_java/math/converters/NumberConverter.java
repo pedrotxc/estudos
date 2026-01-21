@@ -1,6 +1,6 @@
-package com.pedrotxc.rest_with_spring_boot_and_java.greeting_and_math.converters;
+package com.pedrotxc.rest_with_spring_boot_and_java.math.converters;
 
-import com.pedrotxc.rest_with_spring_boot_and_java.greeting_and_math.exception.UnsuportedMathOperationException;
+import com.pedrotxc.rest_with_spring_boot_and_java.exception.UnsuportedMathOperationException;
 
 public class NumberConverter {
 
