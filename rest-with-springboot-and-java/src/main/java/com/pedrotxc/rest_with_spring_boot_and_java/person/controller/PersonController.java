@@ -1,0 +1,31 @@
+package com.pedrotxc.rest_with_spring_boot_and_java.person.controller;
+
+import com.pedrotxc.rest_with_spring_boot_and_java.person.model.Person;
+import com.pedrotxc.rest_with_spring_boot_and_java.person.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/person")
+public class PersonController {
+
+    @Autowired
+    private PersonService personService;
+
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Person> findAll() {
+        return personService.findAll();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Person findById(@PathVariable("id") String id) {
+        return personService.findById(id);
+    }
+
+}
