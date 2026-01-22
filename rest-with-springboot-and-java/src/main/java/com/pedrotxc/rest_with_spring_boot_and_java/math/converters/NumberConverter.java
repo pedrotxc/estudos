@@ -1,19 +1,19 @@
 package com.pedrotxc.rest_with_spring_boot_and_java.math.converters;
 
-import com.pedrotxc.rest_with_spring_boot_and_java.exception.UnsuportedMathOperationException;
+import com.pedrotxc.rest_with_spring_boot_and_java.exception.ResourceNotFoundException;
 
 public class NumberConverter {
 
     public static Double convertToDouble(String strNumber) {
         if (strNumber == null || strNumber.isEmpty())
-            throw new UnsuportedMathOperationException("Please set a numeric value!");
+            throw new ResourceNotFoundException("Please set a numeric value!");
         String number = strNumber.replace(",", ".");
         return Double.parseDouble(number);
     }
 
     public static boolean isNumeric(String strNumber) {
         if (strNumber == null || strNumber.isEmpty())
-            throw new UnsuportedMathOperationException("Please set a numeric value!");
+            throw new ResourceNotFoundException("Please set a numeric value!");
         String number = strNumber.replace(",", ".");
         return number.matches("[-+]?[0-9]*\\.?[0-9]+");
     }

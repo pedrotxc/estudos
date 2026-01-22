@@ -1,6 +1,6 @@
 package com.pedrotxc.rest_with_spring_boot_and_java.math.controllers;
 
-import com.pedrotxc.rest_with_spring_boot_and_java.exception.UnsuportedMathOperationException;
+import com.pedrotxc.rest_with_spring_boot_and_java.exception.ResourceNotFoundException;
 import com.pedrotxc.rest_with_spring_boot_and_java.math.math.SimpleMath;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ public class MathController {
     @RequestMapping("/sum/{numberOne}/{numberTwo}")
     public Double sum(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo) throws Exception {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo))
-            throw new UnsuportedMathOperationException("Please set a numeric value!");
+            throw new ResourceNotFoundException("Please set a numeric value!");
 
         return simpleMath.sum(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
@@ -26,7 +26,7 @@ public class MathController {
     @RequestMapping("/sub/{numberOne}/{numberTwo}")
     public Double subtraction(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo) throws Exception {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo))
-            throw new UnsuportedMathOperationException("Please set a numeric value!");
+            throw new ResourceNotFoundException("Please set a numeric value!");
 
         return simpleMath.subtraction(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
@@ -34,7 +34,7 @@ public class MathController {
     @RequestMapping("/mut/{numberOne}/{numberTwo}")
     public Double multiplication(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo) throws Exception {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo))
-            throw new UnsuportedMathOperationException("Please set a numeric value!");
+            throw new ResourceNotFoundException("Please set a numeric value!");
 
         return simpleMath.multiplication(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
@@ -42,7 +42,7 @@ public class MathController {
     @RequestMapping("/div/{numberOne}/{numberTwo}")
     public Double division(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo) throws Exception {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo))
-            throw new UnsuportedMathOperationException("Please set a numeric value!");
+            throw new ResourceNotFoundException("Please set a numeric value!");
 
         return simpleMath.division(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
@@ -50,7 +50,7 @@ public class MathController {
     @RequestMapping("/med/{numberOne}/{numberTwo}")
     public Double mean(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo) throws Exception {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo))
-            throw new UnsuportedMathOperationException("Please set a numeric value!");
+            throw new ResourceNotFoundException("Please set a numeric value!");
 
         return simpleMath.mean(convertToDouble(numberOne), convertToDouble(numberTwo));
     }
@@ -58,7 +58,7 @@ public class MathController {
     @RequestMapping("/sqr/{numberOne}")
     public Double squareRoot(@PathVariable("numberOne") String numberOne) throws Exception {
         if (!isNumeric(numberOne))
-            throw new UnsuportedMathOperationException("Please set a numeric value!");
+            throw new ResourceNotFoundException("Please set a numeric value!");
 
         return simpleMath.squareRoot(convertToDouble(numberOne));
     }
