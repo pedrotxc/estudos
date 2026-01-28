@@ -4,6 +4,7 @@ import com.estudo.math.SimpleMath;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class SimpleMathTest  {
 
@@ -13,5 +14,6 @@ public class SimpleMathTest  {
         Double result = simpleMath.sum(6.2D, 2D);
         double expected = 8.2D;
         assertEquals(expected, result, "6.2 + 2 did not produce 8.2");
+        assertNotNull(result);
     }
 }
