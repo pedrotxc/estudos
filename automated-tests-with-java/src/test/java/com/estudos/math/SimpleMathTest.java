@@ -95,9 +95,11 @@ public class SimpleMathTest {
         assertEquals(expected, sum, buildMessage(eagerLog));
         assertTrue(eagerLog.length() > 0, "Sem lambda, a mensagem foi construída desnecessariamente!");
 
-        // Cenário 2: Lazy (Com Lambda)
-        // Passamos uma função (Supplier) para o assertEquals.
-        // O assertEquals só chama essa função SE o teste falhar.
+        /*
+         Cenário 2: Lazy (Com Lambda)
+         Passamos uma função (Supplier) para o assertEquals.
+         O assertEquals só chama essa função SE o teste falhar.
+        */
         StringBuilder lazyLog = new StringBuilder();
         assertEquals(expected, sum, () -> buildMessage(lazyLog));
         assertTrue(lazyLog.length() == 0, "Com lambda, a mensagem NÃO deveria ser construída se o teste passar!");
