@@ -12,6 +12,6 @@ public class SimpleMathTest  {
         SimpleMath simpleMath = new SimpleMath();
         Double result = simpleMath.sum(6.2D, 2D);
         double expected = 8.2D;
-        assertEquals(result, expected);
+        assertEquals(expected, result, "6.2 + 2 did not produce 8.2");
     }
 }
