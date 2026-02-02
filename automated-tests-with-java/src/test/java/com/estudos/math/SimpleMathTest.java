@@ -1,6 +1,7 @@
 package com.estudos.math;
 
 import com.estudo.math.SimpleMath;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SimpleMathTest {
 
     //test[System Under Test]_[Condition or State Change]_[Expected Result]
+    @Disabled("Just a template method")
+    @DisplayName("Display Name")
+    @Test
+    void testABCD_When_XYZ_Should() {
+        //Given / Arrange
+        //When / Act
+        //Then / Assert
+    }
+
     @Test
     @DisplayName("Test 6.2 + 2 = 8.2")
     void testSum_When_SixDotTwoIsAddedByTwo_ShouldReturnEightDotTwo() {
@@ -66,7 +76,9 @@ public class SimpleMathTest {
     }
 
     //test[System Under Test]_[Condition or State Change]_[Expected Result]
+    @Disabled("TODO: We need still work on it!")
     @Test
+    @DisplayName("Test Division by Zero")
     void testDivision_When_FirstNumberIsDividedByZeor_ShouldThrowArithmeticException() {
         fail();
     }
