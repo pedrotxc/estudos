@@ -1,17 +1,18 @@
 package com.estudos.math;
 
 import com.estudo.math.SimpleMath;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Test Math Operations in SimpleMath Class")
 public class SimpleMathTest {
 
+    //test[System Under Test]_[Condition or State Change]_[Expected Result]
     @Test
-    void testSum() {
+    @DisplayName("Test 6.2 + 2 = 8.2")
+    void testSum_When_SixDotTwoIsAddedByTwo_ShouldReturnEightDotTwo() {
         SimpleMath simpleMath = new SimpleMath();
         double firstNumber = 6.2D;
         double secondNumber = 2D;
@@ -24,6 +25,7 @@ public class SimpleMathTest {
     }
 
     @Test
+    @DisplayName("Test 6.2 - 2 = 4.2")
     void testSubtraction() {
         SimpleMath simpleMath = new SimpleMath();
         double firstNumber = 6.2D;
@@ -35,6 +37,7 @@ public class SimpleMathTest {
     }
 
     @Test
+    @DisplayName("Test 6.2 * 2 = 12.4")
     void testMultiplication() {
         SimpleMath simpleMath = new SimpleMath();
         double firstNumber = 6.2D;
@@ -46,6 +49,7 @@ public class SimpleMathTest {
     }
 
     @Test
+    @DisplayName("Test 6.2 / 2 = 3.1")
     void testDivision() {
         SimpleMath simpleMath = new SimpleMath();
         double firstNumber = 6.2D;
@@ -56,7 +60,14 @@ public class SimpleMathTest {
         assertEquals(expected, division, () -> firstNumber + " / " + secondNumber + " did not produce " + expected + "!");
     }
 
+    //test[System Under Test]_[Condition or State Change]_[Expected Result]
     @Test
+    void testDivision_When_FirstNumberIsDividedByZeor_ShouldThrowArithmeticException() {
+        fail();
+    }
+
+    @Test
+    @DisplayName("Test (6.2 + 2) / 2 = 4.1")
     void testMean() {
         SimpleMath simpleMath = new SimpleMath();
         double firstNumber = 6.2D;
@@ -68,6 +79,7 @@ public class SimpleMathTest {
     }
 
     @Test
+    @DisplayName("Test Square Root of 9 = 3")
     void testSquareRoot() {
         SimpleMath simpleMath = new SimpleMath();
         double number = 9D;
