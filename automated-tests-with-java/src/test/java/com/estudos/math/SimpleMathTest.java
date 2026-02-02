@@ -1,20 +1,42 @@
 package com.estudos.math;
 
 import com.estudo.math.SimpleMath;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Test Math Operations in SimpleMath Class")
 public class SimpleMathTest {
 
+    SimpleMath simpleMath;
+
+    @BeforeAll
+    static void setup() {
+        System.out.println("Running @BeforeAll method!");
+    }
+
+    @AfterAll
+    static void cleanup() {
+        System.out.println("Running @AfterAll method!");
+    }
+
+    @BeforeEach
+    void beforeEachMethod() {
+        simpleMath = new SimpleMath();
+        System.out.println("Running @BeforeEach method!");
+    }
+
+    @AfterEach
+    void afterEachMethod() {
+        System.out.println("Running @AfterEach method!");
+    }
+
     //test[System Under Test]_[Condition or State Change]_[Expected Result]
     @Disabled("Just a template method")
     @DisplayName("Display Name")
     @Test
     void testABCD_When_XYZ_Should() {
+        System.out.println("Test BDD");
         //Given / Arrange
         //When / Act
         //Then / Assert
@@ -23,10 +45,11 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test 6.2 + 2 = 8.2")
     void testSum_When_SixDotTwoIsAddedByTwo_ShouldReturnEightDotTwo() {
+        System.out.println("Test 6.2 + 2 = 8.2");
         //AAA Arrange, Act, Assert
 
         //Given /Arrange
-        SimpleMath simpleMath = new SimpleMath();
+
         double firstNumber = 6.2D;
         double secondNumber = 2D;
         double expected = 8.2D;
@@ -42,7 +65,7 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test 6.2 - 2 = 4.2")
     void testSubtraction() {
-        SimpleMath simpleMath = new SimpleMath();
+        System.out.println("Test 6.2 - 2 = 4.2");
         double firstNumber = 6.2D;
         double secondNumber = 2D;
 
@@ -54,7 +77,7 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test 6.2 * 2 = 12.4")
     void testMultiplication() {
-        SimpleMath simpleMath = new SimpleMath();
+        System.out.println("Test 6.2 * 2 = 12.4");
         double firstNumber = 6.2D;
         double secondNumber = 2D;
 
@@ -66,7 +89,7 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test 6.2 / 2 = 3.1")
     void testDivision() {
-        SimpleMath simpleMath = new SimpleMath();
+        System.out.println("Test 6.2 / 2 = 3.1");
         double firstNumber = 6.2D;
         double secondNumber = 2D;
 
@@ -80,13 +103,14 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test Division by Zero")
     void testDivision_When_FirstNumberIsDividedByZeor_ShouldThrowArithmeticException() {
+        System.out.println("Division By Zero");
         fail();
     }
 
     @Test
     @DisplayName("Test (6.2 + 2) / 2 = 4.1")
     void testMean() {
-        SimpleMath simpleMath = new SimpleMath();
+        System.out.println("Test (6.2 + 2) / 2 = 4.1");
         double firstNumber = 6.2D;
         double secondNumber = 2D;
 
@@ -98,7 +122,7 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test Square Root of 9 = 3")
     void testSquareRoot() {
-        SimpleMath simpleMath = new SimpleMath();
+        System.out.println("Test Square Root of 9 = 3");
         double number = 9D;
 
         Double squareRoot = simpleMath.squareRoot(number);
@@ -109,7 +133,6 @@ public class SimpleMathTest {
     // Teste demonstrativo para comparar Eager vs Lazy Assertions
     @Test
     void testLazyVsEagerAssertion() {
-        SimpleMath simpleMath = new SimpleMath();
         double firstNumber = 6.2D;
         double secondNumber = 2D;
         Double sum = simpleMath.sum(firstNumber, secondNumber);
@@ -131,7 +154,7 @@ public class SimpleMathTest {
         */
         StringBuilder lazyLog = new StringBuilder();
         assertEquals(expected, sum, () -> buildMessage(lazyLog));
-        assertTrue(lazyLog.length() == 0, "Com lambda, a mensagem NÃO deveria ser construída se o teste passar!");
+        assertEquals(0, lazyLog.length(), "Com lambda, a mensagem NÃO deveria ser construída se o teste passar!");
     }
 
     private String buildMessage(StringBuilder log) {
