@@ -13,4 +13,5 @@ spring:
     open-in-view: false
 logging:
   level:
-    com.pedrotxc: DEBUG
+    root: WARN
+    #com.pedrotxc: DEBUG
