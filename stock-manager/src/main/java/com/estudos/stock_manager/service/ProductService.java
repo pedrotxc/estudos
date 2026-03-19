@@ -1,6 +1,8 @@
 package com.estudos.stock_manager.service;
 
-import com.estudos.stock_manager.dto.ProductDTO;
+import com.estudos.stock_manager.dto.ProductRequestDTO;
+import com.estudos.stock_manager.dto.ProductResponseDTO;
+import com.estudos.stock_manager.mapper.ProductMapper;
 import com.estudos.stock_manager.model.Product;
 import com.estudos.stock_manager.repository.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -11,9 +13,11 @@ import org.springframework.stereotype.Service;
 public class ProductService {
 
     private final ProductRepository repository;
+    private final ProductMapper mapper;
 
-    public void save(ProductDTO data) {
-        Product product = new Product(data);
-        repository.save(product);
+    public ProductResponseDTO save(ProductRequestDTO data) {
+        Product productEntity = mapper.toEntity(data);
+        Product productSaved = repository.save(productEntity);
+        return mapper.toResponse(productSaved);
     }
 }
