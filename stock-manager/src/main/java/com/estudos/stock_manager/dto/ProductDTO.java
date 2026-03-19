@@ -3,7 +3,7 @@ package com.estudos.stock_manager.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public record ProductRequest(String name,
+public record ProductDTO(String name,
                              String barcode,
                              String category,
                              BigDecimal costPrice,

@@ -1,8 +1,6 @@
 package com.estudos.stock_manager.controller;
 
-import com.estudos.stock_manager.dto.ProductRequest;
-import com.estudos.stock_manager.mapper.ProductMapper;
-import com.estudos.stock_manager.model.Product;
+import com.estudos.stock_manager.dto.ProductDTO;
 import com.estudos.stock_manager.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,11 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductController {
 
     private final ProductService service;
-    private final ProductMapper mapper;
 
     @PostMapping
-    public void createProduct(@RequestBody ProductRequest productRequest) {
-        Product product = mapper.toModel(productRequest);
-        service.createProduct(product);
+    public void save(@RequestBody ProductDTO data) {
+        service.save(data);
     }
 }

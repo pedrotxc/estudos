@@ -1,6 +1,7 @@
 package com.pedrotxc.rest_with_spring_boot_and_java.person.service;
 
 import com.pedrotxc.rest_with_spring_boot_and_java.exception.ResourceNotFoundException;
+import com.pedrotxc.rest_with_spring_boot_and_java.person.data.dto.PersonDTO;
 import com.pedrotxc.rest_with_spring_boot_and_java.person.model.Person;
 import com.pedrotxc.rest_with_spring_boot_and_java.person.repository.PersonRepository;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+
+import static com.pedrotxc.rest_with_spring_boot_and_java.person.mapper.ObjectMapper.parseListObjects;
+import static com.pedrotxc.rest_with_spring_boot_and_java.person.mapper.ObjectMapper.parseObject;
 
 @Service
 public class PersonService {
@@ -19,38 +23,39 @@ public class PersonService {
     private final AtomicLong counter = new AtomicLong();
     private org.slf4j.Logger logger = LoggerFactory.getLogger(PersonService.class.getName());
 
-    public List<Person> findAll() {
+    public List<PersonDTO> findAll() {
         logger.info("Finding all People!");
-        return repository.findAll();
+        return parseListObjects(repository.findAll(), PersonDTO.class);
     }
 
-    public Person findById(Long id) {
+    public PersonDTO findById(Long id) {
         logger.info("Find one Person!");
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+        var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+        return parseObject(entity, PersonDTO.class);
     }
 
-    public Person create(Person person) {
+    public PersonDTO create(PersonDTO person) {
         logger.info("Creating one Person!");
-        return repository.save(person);
+        Person entity = parseObject(person, Person.class);
+        return parseObject(repository.save(entity), PersonDTO.class);
     }
 
-    public Person update(Person person) {
+    public PersonDTO update(PersonDTO person) {
         logger.info("Updating one Person!");
-
-        Person entity = this.findById(person.getId());
+        var entity = repository.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return repository.save(entity);
+        return parseObject(repository.save(entity), PersonDTO.class);
     }
 
     public void delete(Long id) {
         logger.info("Deleting one Person!");
 
-        Person entity = this.findById(id);
+        Person entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 
         repository.delete(entity);
     }
