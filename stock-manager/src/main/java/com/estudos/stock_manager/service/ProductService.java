@@ -8,6 +8,8 @@ import com.estudos.stock_manager.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class ProductService {
@@ -19,5 +21,10 @@ public class ProductService {
         Product productEntity = mapper.toEntity(data);
         Product productSaved = repository.save(productEntity);
         return mapper.toResponse(productSaved);
+    }
+
+    public ProductResponseDTO listProducts(){
+        List<Product> products = repository.findAll();
+
     }
 }

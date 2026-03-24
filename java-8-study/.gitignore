@@ -1,0 +1,99 @@
+##############################
+# Compiled & Packages
+##############################
+*.class
+*.jar
+*.war
+*.ear
+# Maven wrapper explicit ignore (from input 1)
+.mvn/wrapper/maven-wrapper.jar
+
+##############################
+# Build Results (Maven, Gradle, Bin)
+##############################
+target/
+build/
+/bin/
+blog/bin/
+.gradle/
+**/.gradle
+
+# Exceptions (Do not ignore these paths)
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+##############################
+# Documentation & Logs
+##############################
+HELP.md
+*.bak
+hs_err_pid*
+
+##############################
+# Security (Keys)
+##############################
+# SSH Keys
+*.pem
+*.ppk
+
+##############################
+# IDE - Eclipse / STS
+##############################
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+.tern-project
+# Metadata workspace
+/.metadata/
+
+# Wildcards for multi-module projects
+**/.project
+**/.classpath
+**/.settings/
+**/.factorypath
+**/.tern-project
+
+##############################
+# IDE - IntelliJ IDEA
+##############################
+.idea
+*.iws
+*.iml
+*.ipr
+**/*.iml
+**/.idea
+
+##############################
+# IDE - NetBeans
+##############################
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+##############################
+# IDE - VS Code
+##############################
+.vscode/
+
+##############################
+# Node / JS
+##############################
+/node_modules
+
+##############################
+# Mobile / J2ME
+##############################
+.mtj.tmp/
+
+##############################
+# Misc / OS
+##############################
+*.ini
