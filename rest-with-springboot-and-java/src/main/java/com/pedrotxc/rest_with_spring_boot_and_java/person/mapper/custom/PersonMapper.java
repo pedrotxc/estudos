@@ -22,11 +22,12 @@ public class PersonMapper {
     public Person convertDTOToEntity(PersonDTOV2 person) {
         Person entity = new Person();
 
+        entity.setId(person.getId());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
-//        entity.setBirthDay(new Date());
+//      entity.setBirthDay(new Date());
 
         return entity;
     }
