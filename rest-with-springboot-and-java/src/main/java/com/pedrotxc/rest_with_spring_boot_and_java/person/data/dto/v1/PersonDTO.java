@@ -1,4 +1,4 @@
-package com.pedrotxc.rest_with_spring_boot_and_java.person.data.dto;
+package com.pedrotxc.rest_with_spring_boot_and_java.person.data.dto.v1;
 
 import lombok.Getter;
 import lombok.Setter;

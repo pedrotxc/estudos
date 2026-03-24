@@ -1,6 +1,6 @@
 package com.pedrotxc.rest_with_spring_boot_and_java.unittests.mapper;
 
-import com.pedrotxc.rest_with_spring_boot_and_java.person.data.dto.PersonDTO;
+import com.pedrotxc.rest_with_spring_boot_and_java.person.data.dto.v1.PersonDTO;
 import com.pedrotxc.rest_with_spring_boot_and_java.person.model.Person;
 
 import java.util.ArrayList;

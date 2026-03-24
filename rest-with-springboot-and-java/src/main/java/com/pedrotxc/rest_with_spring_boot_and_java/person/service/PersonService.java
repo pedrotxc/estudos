@@ -1,7 +1,9 @@
 package com.pedrotxc.rest_with_spring_boot_and_java.person.service;
 
 import com.pedrotxc.rest_with_spring_boot_and_java.exception.ResourceNotFoundException;
-import com.pedrotxc.rest_with_spring_boot_and_java.person.data.dto.PersonDTO;
+import com.pedrotxc.rest_with_spring_boot_and_java.person.data.dto.v1.PersonDTO;
+import com.pedrotxc.rest_with_spring_boot_and_java.person.data.dto.v2.PersonDTOV2;
+import com.pedrotxc.rest_with_spring_boot_and_java.person.mapper.custom.PersonMapper;
 import com.pedrotxc.rest_with_spring_boot_and_java.person.model.Person;
 import com.pedrotxc.rest_with_spring_boot_and_java.person.repository.PersonRepository;
 import org.slf4j.LoggerFactory;
@@ -19,6 +21,8 @@ public class PersonService {
 
     @Autowired
     PersonRepository repository;
+    @Autowired
+    PersonMapper personMapper;
 
     private final AtomicLong counter = new AtomicLong();
     private org.slf4j.Logger logger = LoggerFactory.getLogger(PersonService.class.getName());
@@ -38,6 +42,12 @@ public class PersonService {
         logger.info("Creating one Person!");
         Person entity = parseObject(person, Person.class);
         return parseObject(repository.save(entity), PersonDTO.class);
+    }
+
+    public PersonDTOV2 createV2(PersonDTOV2 person) {
+        logger.info("Creating one Person V2!");
+        Person entity = personMapper.convertDTOToEntity(person);
+        return personMapper.convertEntityToDTO(repository.save(entity));
     }
 
     public PersonDTO update(PersonDTO person) {
