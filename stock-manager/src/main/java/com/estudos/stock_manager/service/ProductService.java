@@ -6,9 +6,9 @@ import com.estudos.stock_manager.mapper.ProductMapper;
 import com.estudos.stock_manager.model.Product;
 import com.estudos.stock_manager.repository.ProductRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -18,13 +18,11 @@ public class ProductService {
     private final ProductMapper mapper;
 
     public ProductResponseDTO save(ProductRequestDTO data) {
-        Product productEntity = mapper.toEntity(data);
-        Product productSaved = repository.save(productEntity);
+        Product productSaved = repository.save(mapper.toEntity(data));
         return mapper.toResponse(productSaved);
     }
 
-    public ProductResponseDTO listProducts(){
-        List<Product> products = repository.findAll();
-
+    public Page<ProductResponseDTO> listProducts(Pageable pageable) {
+        return repository.findAll(pageable).map(mapper::toResponse);
     }
 }
