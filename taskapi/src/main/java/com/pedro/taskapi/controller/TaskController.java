@@ -13,7 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/task")
+@RequestMapping("/tasks")
 public class TaskController {
 
     private final TaskService taskService;
@@ -25,7 +25,7 @@ public class TaskController {
     @PostMapping
     public ResponseEntity<TaskResponseDTO> saveTask(@RequestBody TaskRequestDTO task) {
         TaskResponseDTO response = taskService.saveTask(task);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(response.id()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(response.id()).toUri();
         return ResponseEntity.created(uri).body(response);
     }
 }
