@@ -3,10 +3,14 @@ package com.pedro.taskapi.controller;
 import com.pedro.taskapi.domain.dto.TaskRequestDTO;
 import com.pedro.taskapi.domain.dto.TaskResponseDTO;
 import com.pedro.taskapi.service.TaskService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/task")
@@ -19,9 +23,9 @@ public class TaskController {
     }
 
     @PostMapping
-    public void saveTask(@RequestBody TaskRequestDTO task) {
+    public ResponseEntity<TaskResponseDTO> saveTask(@RequestBody TaskRequestDTO task) {
         TaskResponseDTO response = taskService.saveTask(task);
-
-        System.out.println(response);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(response.id()).toUri();
+        return ResponseEntity.created(uri).body(response);
     }
 }
