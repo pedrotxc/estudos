@@ -1,10 +1,10 @@
 package com.pedro.taskapi.domain.dto;
 
-import com.pedro.taskapi.domain.model.Task;
+import jakarta.validation.constraints.NotBlank;
 
-public record TaskRequestDTO(String name, String description) {
+public record TaskRequestDTO(
+        @NotBlank(message = "Name é obrigatório") String name,
+        @NotBlank(message = "Description é obrigatório") String description
+) {
 
-    public TaskRequestDTO(Task task) {
-        this(task.getName(), task.getDescription());
-    }
 }

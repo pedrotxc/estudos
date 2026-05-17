@@ -1,28 +1,31 @@
 package com.pedro.taskapi.domain.model;
 
-import com.pedro.taskapi.domain.dto.TaskRequestDTO;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
 @Entity
-@NoArgsConstructor
+@Table(name = "tb_task")
 public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String description;
 
-    public Task(TaskRequestDTO dto) {
-        this.name = dto.name();
-        this.description = dto.description();
+    public Task() {
+    }
+
+    public Task(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    public void updateInfo(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 }
