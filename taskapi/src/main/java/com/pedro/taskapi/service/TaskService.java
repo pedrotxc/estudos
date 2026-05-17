@@ -2,7 +2,9 @@ package com.pedro.taskapi.service;
 
 import com.pedro.taskapi.domain.dto.TaskRequestDTO;
 import com.pedro.taskapi.domain.dto.TaskResponseDTO;
+import com.pedro.taskapi.domain.dto.TaskUpdateDTO;
 import com.pedro.taskapi.domain.model.Task;
+import com.pedro.taskapi.exception.TaskNotFoundException;
 import com.pedro.taskapi.mapper.TaskMapper;
 import com.pedro.taskapi.repository.TaskRepository;
 import org.springframework.stereotype.Service;
@@ -26,25 +28,24 @@ public class TaskService {
     }
 
     public TaskResponseDTO getTaskById(Long id) {
-        Task task = repository.findById(id).orElseThrow(() -> new RuntimeException("Task nao encontrada"));
+        Task task = repository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task nao encontrada"));
         return TaskMapper.toResponse(task);
     }
 
-    public List<Task> getAllTasks() {
-        List<Task> tasks = repository.findAll();
-        return tasks;
+    public List<TaskResponseDTO> getAllTasks() {
+        return repository.findAll().stream().map(TaskMapper::toResponse).toList();
     }
 
     @Transactional
-    public TaskResponseDTO updateTask(Long id, TaskRequestDTO taskRequest) {
-        Task task = repository.findById(id).orElseThrow(() -> new RuntimeException("Task nao encontrada"));
+    public TaskResponseDTO updateTask(Long id, TaskUpdateDTO taskRequest) {
+        Task task = repository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task nao encontrada"));
         task.updateInfo(taskRequest.name(), taskRequest.description());
         Task taskSaved = repository.save(task);
         return TaskMapper.toResponse(taskSaved);
     }
 
     public void deleteTask(Long id) {
-        Task task = repository.findById(id).orElseThrow(() -> new RuntimeException("Task nao encontrada"));
+        Task task = repository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task nao encontrada"));
         repository.delete(task);
     }
 }

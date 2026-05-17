@@ -2,7 +2,7 @@ package com.pedro.taskapi.controller;
 
 import com.pedro.taskapi.domain.dto.TaskRequestDTO;
 import com.pedro.taskapi.domain.dto.TaskResponseDTO;
-import com.pedro.taskapi.domain.model.Task;
+import com.pedro.taskapi.domain.dto.TaskUpdateDTO;
 import com.pedro.taskapi.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -36,19 +36,19 @@ public class TaskController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Task>> getAllTasks() {
-        List<Task> response = taskService.getAllTasks();
+    public ResponseEntity<List<TaskResponseDTO>> getAllTasks() {
+        List<TaskResponseDTO> response = taskService.getAllTasks();
         return ResponseEntity.ok().body(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TaskResponseDTO> updateTask(@PathVariable Long id, @RequestBody TaskRequestDTO taskRequest) {
+    public ResponseEntity<TaskResponseDTO> updateTask(@PathVariable Long id, @Valid @RequestBody TaskUpdateDTO taskRequest) {
         TaskResponseDTO response = taskService.updateTask(id, taskRequest);
         return ResponseEntity.ok().body(response);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable Long id){
+    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
         return ResponseEntity.noContent().build();
     }
